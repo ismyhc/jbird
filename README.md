@@ -43,7 +43,7 @@ or
 jai-linux main.jai
 ```
 
-or use make if you have make installed you can use it. Change make file to reflect your jai compiler name/path
+or use make if you have make installed you can use it. Assumes you have jai-macos or jai-linux in your path
 
 ```bash
 make build
