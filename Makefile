@@ -10,16 +10,16 @@ else
   $(error Unsupported OS: $(UNAME_S))
 endif
 
-jbird: jbird.jai
-	$(JAI) jbird.jai
+jcat: jcat.jai
+	$(JAI) jcat.jai
 
-build: jbird
+build: jcat
 
-run: jbird
-	./jbird
+run: jcat
+	./jcat
 
 clean:
-	rm -rf jbird .build jbird.dSYM
+	rm -rf jcat .build jcat.dSYM
 
 watchrun:
 	find . -name '*.jai' ! -path './.build/*' | entr -r $(MAKE) run
