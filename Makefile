@@ -15,6 +15,9 @@ jcat: jcat.jai
 
 build: jcat
 
+build-release: jcat.jai
+	$(JAI) -release jcat.jai
+
 run: jcat
 	./jcat
 

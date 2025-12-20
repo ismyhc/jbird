@@ -1,6 +1,6 @@
 #import "Basic"()(MEMORY_DEBUGGER = false);
-Posix :: #import "POSIX";
 #import "File";
+Posix :: #import "POSIX";
 
 main :: () {
     //defer report_memory_leaks();
