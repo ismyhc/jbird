@@ -4,6 +4,8 @@ Posix :: #import "POSIX";
 
 main :: () {
     //defer report_memory_leaks();
+    retval : s32 = 0;
+    defer exit(retval);
     
     args := get_command_line_arguments();
     defer free(args.data);
@@ -19,6 +21,7 @@ main :: () {
         success := cat_stdin(Posix.STDIN_FILENO, buffer, chunk_size);
         if !success {
             print_error("Failed to cat from stdin\n");
+            retval = 1;
             return;
         }
         return;
@@ -40,12 +43,14 @@ main :: () {
             if file_path == "-" {
                 if !cat_stdin(Posix.STDIN_FILENO, buffer, chunk_size) {
                     print_error("Failed to cat from stdin\n");
+                    retval = 1;
                     return;
                 }
             } else {
                 success := cat_one(file_path, buffer, chunk_size);
                 if !success {
                     print_error("Failed to cat file: %\n", file_path);
+                    retval = 1;
                     return;
                 }
             }
@@ -54,7 +59,7 @@ main :: () {
 }
 
 get_chunk_size :: () -> s64 {
-    page := cast(s64)Posix.getpagesize(); // adjust if your binding returns int
+    page := cast(s64)Posix.getpagesize();
     if page <= 0 page = 4096;
 
     target: s64 = 64 * 1024;
