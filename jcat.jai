@@ -9,7 +9,6 @@ main :: () {
     defer free(args.data);
 
     chunk_size := get_chunk_size();
-    print("Using chunk size: % bytes\n", chunk_size);
 
     // First arg is program name
     // Handle no args just do stdin
